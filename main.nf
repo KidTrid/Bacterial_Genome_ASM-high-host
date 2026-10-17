@@ -3,10 +3,10 @@ nextflow.enable.dsl=2
 // ---------------------
 // Parameters
 // ---------------------
-params.meta      = "in5323_2_metadata.tsv"
-params.input_dir = "/mnt/shared/myacoub/projects/in5323/fastq"
-params.outdir    = "/mnt/shared/myacoub/projects/in5323/host_removed"
-params.ref_dir   = "/mnt/shared/myacoub/projects/in5323/host"
+params.meta      = "metadata.tsv"
+params.input_dir = "/mnt/shared/myacoub/projects/$PROJECT/fastq"
+params.outdir    = "/mnt/shared/myacoub/projects/$PROJECT/host_removed"
+params.ref_dir   = "/mnt/shared/myacoub/projects/$PROJECT/host"
 params.host_ref  = "GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.fna.gz"
 
 // ---------------------
@@ -20,7 +20,7 @@ process FASTP {
     cpus 10
     memory '20 GB'
 
-    container "/mnt/workdir/singularity/quay.io-biocontainers-fastp-1.0.1--heae3180_0.img"
+    container "/workdir/IMGS/quay.io-biocontainers-fastp-1.0.1--heae3180_0.img"
     containerOptions "-B ${params.input_dir}:/input"
 
     input:
@@ -51,7 +51,7 @@ process BWA_ALIGN {
     cpus 32
     memory '200 GB'
 
-    container "/mnt/workdir/singularity/quay.io-biocontainers-bwa-0.7.17--hed695b0_7.img"
+    container "/workdir/IMGS/quay.io-biocontainers-bwa-0.7.17--hed695b0_7.img"
     containerOptions "-B ${params.ref_dir}:/ref"
 
     input:
@@ -75,7 +75,7 @@ process SAM_TO_BAM {
     cpus 16
     memory '100 GB'
 
-    container "/mnt/workdir/singularity/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
+    container "/workdir/IMGS/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
 
     input:
     tuple val(internal_id), val(sample_dir), path(sam)
@@ -101,7 +101,7 @@ process EXTRACT_UNMAPPED {
     cpus 16
     memory '100 GB'
 
-    container "/mnt/workdir/singularity/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
+    container "/workdir/IMGS/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
 
     input:
     tuple val(internal_id), val(sample_dir), path(bam)
@@ -123,7 +123,7 @@ process BAM_TO_FASTQ {
     cpus 16
     memory '50 GB'
 
-    container "/mnt/workdir/singularity/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
+    container "/workdir/IMGS/us-docker.pkg.dev-cegx-releases-us-prod-samtools-0.2.3.img"
 
     input:
     tuple val(internal_id), val(sample_dir), path(sorted_bam)
@@ -151,7 +151,7 @@ process KRAKEN2_DECONTAM {
     cpus 32
     memory '200 GB'
 
-    container "/mnt/workdir/singularity/quay.io-biocontainers-kraken2-2.1.3--pl5321h077b44d_4.img"
+    container "/workdir/IMGS/quay.io-biocontainers-kraken2-2.1.3--pl5321h077b44d_4.img"
     containerOptions "-B /mnt/shared/myacoub/Kraken2/dbs:/db"
 
     input:
@@ -194,7 +194,7 @@ process SPADES_ASSEMBLY {
     memory '100 GB'
     time '12h'
 
-    container "/mnt/workdir/singularity/quay.io-biocontainers-spades-3.15.5--h95f258a_1.img"
+    container "/workdir/IMGS/quay.io-biocontainers-spades-3.15.5--h95f258a_1.img"
 
     input:
     tuple val(internal_id), val(sample_dir),
