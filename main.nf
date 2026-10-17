@@ -7,7 +7,7 @@ params.meta      = "metadata.tsv"
 params.input_dir = "/mnt/shared/myacoub/projects/$PROJECT/fastq"
 params.outdir    = "/mnt/shared/myacoub/projects/$PROJECT/host_removed"
 params.ref_dir   = "/mnt/shared/myacoub/projects/$PROJECT/host"
-params.host_ref  = "GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.fna.gz"
+params.host_ref  = "GCF_XXXXX.genomic.fna.gz"
 
 // ---------------------
 // Processes
