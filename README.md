@@ -61,14 +61,14 @@ sbatch pipeline/00_index-host-genome.sh -d host -r GCF_051106095.1_PviZW2.1_geno
 | `-r` | ✅ | Host reference genome fasta file (.gz is acceptable) |
 
 
-Download the FASTQ data using the `rawdata_links.tsv` file provided by Zymo Microbiomics:
+Download the FASTQ data using the `rawdata_links.tsv` file :
 ```
 sbatch pipeline/01_download-fastq.sh -i zr30363_rawdata_links.tsv -o fastq
 ```
 
 | Flag | Required | Description |
 |------|----------|-------------|
-| `-i` | ✅ | rawdata file provided by zymo microbiomics team |
+| `-i` | ✅ | rawdata file |
 | `-o` | ✅ | destination folder for raw fastq data |
 
 run the nextflow pipeline
