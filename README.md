@@ -36,18 +36,6 @@ There are additional scripts to further polish/assess the genome assembly.
 Critical and required for host decontam. It's not currently part of the nextflow pipeline, as I usually run this step while I wait for the sequencing data and it only needs to be ran once.
 I consider this more of a 'prep-time' step.
 
-2. **Download the fastq data**
-Once the fastq data becomes available, you can download the fastq data using the 'rawdata_links.tsv' file.
-
-3. **Decontaminate the MAG with FCS**
-Foreign Contaminant Screen (FCS) to flag the genome for contaminants. You must provide the appropriate taxid for your target genome.
-
-4. **Binning**
-Binning the MAG if appropriate. Binning tools are currently not available in the singularity folder within HPC.
-
-5. **Quality Assessment**
-CheckM for assessing strain heterogeneity, genome completeness, and contamination
-
 ## Usage
 
 Prep the host genome assembly for use in the pipeline
