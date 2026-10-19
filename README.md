@@ -63,7 +63,7 @@ sbatch pipeline/00_index-host-genome.sh -d host -r GCF_051106095.1_PviZW2.1_geno
 
 Download the FASTQ data using the `rawdata_links.tsv` file :
 ```
-sbatch pipeline/01_download-fastq.sh -i zr30363_rawdata_links.tsv -o fastq
+sbatch pipeline/01_download-fastq.sh -i rawdata_links.tsv -o fastq
 ```
 
 | Flag | Required | Description |
